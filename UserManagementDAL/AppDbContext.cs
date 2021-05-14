@@ -26,8 +26,8 @@ namespace UserManagementDAL
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer(@"data source = NGBLR-03031\MSSQL2014; initial catalog = UserManagement; persist security info = true; " +
-                    "user id=sa; password=nextgen;App=EntityFramework");
+                optionsBuilder.UseSqlServer(@"data source = your/sqlserver; initial catalog = UserManagement; persist security info = true; " +
+                    "user id=youruser id; password=yourpassword;App=EntityFramework");
             }
             base.OnConfiguring(optionsBuilder);
         }
