@@ -7,3 +7,4 @@ Follow the following steps to play around:
 2.	Apply the Database migration file by running the command update-database 
 3.	Check for table creation and add some data to Cities and Countries table.
 4.	Set the statup project as the UI project and run to see it working.
+5. As, of now the application only creates the User for read,update and delete the functionality will be added later.
