@@ -1,4 +1,4 @@
-SignUpPageChallenge based on .NET 5 CORE
+UserManagement based on .NET 5 CORE
 #Author: Kumar Abhishek
 Note: This has been created only for learning purpose
 
