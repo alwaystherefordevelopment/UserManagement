@@ -1,0 +1,67 @@
+﻿@model IEnumerable<UserManagementRepository.Models.UserModel>
+
+@{
+    ViewData["Title"] = "User's";
+}
+
+<h1>User List</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Gender)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Contact)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CityName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CountryName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Terms)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Gender)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Contact)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CityName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CountryName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Terms)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new {id=item.UserId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.UserId }, new { onclick = "return confirm('Are you sure to delete?')" } )
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

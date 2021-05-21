@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace UserManagementDAL.Migrations
+namespace UserManagementRepository.Migrations
 {
     public partial class initial : Migration
     {
@@ -43,27 +43,49 @@ namespace UserManagementDAL.Migrations
                     UserName = table.Column<string>(type: "Varchar(20)", nullable: false),
                     Password = table.Column<string>(type: "Varchar(20)", nullable: false),
                     Contact = table.Column<string>(type: "Varchar(20)", nullable: false),
-                    Country = table.Column<string>(type: "Varchar(20)", nullable: false),
-                    City = table.Column<string>(type: "Varchar(20)", nullable: false),
+                    CountryId = table.Column<int>(type: "int", nullable: false),
+                    CityId = table.Column<int>(type: "int", nullable: false),
                     Gender = table.Column<string>(type: "Varchar(10)", nullable: false),
                     Terms = table.Column<bool>(type: "Bit", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Users", x => x.UserId);
+                    table.ForeignKey(
+                        name: "FK_Users_Cities_CityId",
+                        column: x => x.CityId,
+                        principalTable: "Cities",
+                        principalColumn: "CityId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Users_Countries_CountryId",
+                        column: x => x.CountryId,
+                        principalTable: "Countries",
+                        principalColumn: "CountryId",
+                        onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Users_CityId",
+                table: "Users",
+                column: "CityId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Users_CountryId",
+                table: "Users",
+                column: "CountryId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "Users");
+
+            migrationBuilder.DropTable(
                 name: "Cities");
 
             migrationBuilder.DropTable(
                 name: "Countries");
-
-            migrationBuilder.DropTable(
-                name: "Users");
         }
     }
 }

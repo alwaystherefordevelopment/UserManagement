@@ -1,10 +1,12 @@
-﻿using SignUpPageChallenge.Helpers;
+﻿using UserManagement.UI.Helpers;
 using System.ComponentModel.DataAnnotations;
 
-namespace SignUpPageChallenge.Models
+namespace UserManagement.UI.Models
 {
     public class UserModel
     {
+        public int UserId { get; set; }
+
         [Required(ErrorMessage ="Name is required.")]
         public string Name { get; set; }
 
@@ -16,25 +18,29 @@ namespace SignUpPageChallenge.Models
         [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,15}$", ErrorMessage = "Invalid Password")]
         public string Password { get; set; }
 
-        [Required(ErrorMessage ="Confirm passwored is required")]
+        [Required(ErrorMessage ="Please Confirm passwored")]
         [Compare("Password",ErrorMessage ="Confirm password should match password")]
                
         public string ConfirmPassword { get; set; }
 
         [Required(ErrorMessage ="Please enter your contact number.")]
         [RegularExpression("^[6,7,8,9]\\d{9}$", ErrorMessage = "Please Enter Correct Mobile No.")]
-        public string ContactNumber { get; set; }
+        public string Contact { get; set; }
 
         [Required(ErrorMessage ="Gender is required")]
         public string Gender { get; set; }
 
         [Required(ErrorMessage ="Please select a country.")]
-        public string Country { get; set; }
+        public int CountryId { get; set; }
 
         [Required(ErrorMessage ="Please select a city.")]
-        public string City { get; set; }
+        public int CityId { get; set; }
 
         [CheckBoxValidator(ErrorMessage = "Please Accept Terms")]
         public bool Terms { get; set; }
+
+        public string City { get; set; }
+
+        public string Country { get; set; }
     }
 }

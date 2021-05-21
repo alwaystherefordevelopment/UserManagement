@@ -4,12 +4,12 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using UserManagementDAL;
+using UserManagementRepository;
 
-namespace UserManagementDAL.Migrations
+namespace UserManagementRepository.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20210514031246_initial")]
+    [Migration("20210516103409_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -60,17 +60,15 @@ namespace UserManagementDAL.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("City")
-                        .IsRequired()
-                        .HasColumnType("Varchar(20)");
+                    b.Property<int>("CityId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Contact")
                         .IsRequired()
                         .HasColumnType("Varchar(20)");
 
-                    b.Property<string>("Country")
-                        .IsRequired()
-                        .HasColumnType("Varchar(20)");
+                    b.Property<int>("CountryId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Gender")
                         .IsRequired()
@@ -93,7 +91,30 @@ namespace UserManagementDAL.Migrations
 
                     b.HasKey("UserId");
 
+                    b.HasIndex("CityId");
+
+                    b.HasIndex("CountryId");
+
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("UserManagementDAL.User", b =>
+                {
+                    b.HasOne("UserManagementDAL.City", "City")
+                        .WithMany()
+                        .HasForeignKey("CityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("UserManagementDAL.Country", "Country")
+                        .WithMany()
+                        .HasForeignKey("CountryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("City");
+
+                    b.Navigation("Country");
                 });
 #pragma warning restore 612, 618
         }

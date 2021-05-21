@@ -31,12 +31,11 @@ namespace UserManagementDAL
         public string Contact { get; set; }
 
         [Required]
-        [Column(TypeName ="Varchar(20)")]
-        public string Country { get; set; }
+        public int CountryId { get; set; }
 
         [Required]
-        [Column(TypeName ="Varchar(20)")]
-        public string City { get; set; }
+        
+        public int CityId { get; set; }
 
         [Required]
         [Column(TypeName = "Varchar(10)")]
@@ -45,6 +44,10 @@ namespace UserManagementDAL
         [Required]
         [Column(TypeName ="Bit")]
         public bool Terms { get; set; }
+
+        public City City { get; set; }
+
+        public Country Country { get; set; }
 
     }
 }

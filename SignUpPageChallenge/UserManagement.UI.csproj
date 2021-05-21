@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+    <UserSecretsId>dfb8f2b8-518d-4597-84ea-362465b66f92</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -9,7 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\UserManagementDAL\UserManagementDAL.csproj" />
+    <ProjectReference Include="..\UserManagementRepository\UserManagementRepository.csproj" />
   </ItemGroup>
 
 </Project>

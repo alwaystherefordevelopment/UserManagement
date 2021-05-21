@@ -5,6 +5,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using UserManagementDAL;
+using UserManagementRepository;
+using UserManagementRepository.Implementations;
+using UserManagementRepository.Interfaces;
 
 namespace SignUpPageChallenge
 {
@@ -25,6 +28,10 @@ namespace SignUpPageChallenge
             {
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
             });
+           
+            services.AddTransient<IRepository<City>, Repository<City>>();
+            services.AddTransient<IRepository<Country>, Repository<Country>>();
+            services.AddTransient<IUserRepository, UserRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -51,7 +58,7 @@ namespace SignUpPageChallenge
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Account}/{action=SignUp}/{id?}");
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }

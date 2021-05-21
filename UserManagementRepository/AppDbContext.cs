@@ -1,11 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using UserManagementDAL;
 
-namespace UserManagementDAL
+namespace UserManagementRepository
 {
     public class AppDbContext :DbContext
     {
@@ -26,8 +22,8 @@ namespace UserManagementDAL
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer(@"data source = your/sqlserver; initial catalog = UserManagement; persist security info = true; " +
-                    "user id=youruser id; password=yourpassword;App=EntityFramework");
+                optionsBuilder.UseSqlServer(@"data source = .; initial catalog = UserManagement; persist security info = true; " +
+                    "user id=sa; password=password;App=EntityFramework");
             }
             base.OnConfiguring(optionsBuilder);
         }
